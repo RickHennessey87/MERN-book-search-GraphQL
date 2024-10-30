@@ -40,13 +40,17 @@ const resolvers = {
 
         saveBook: async (parent, { input }, context) => {
             if (context.user) {
-                const updatedUser = await User.findByIdAndUpdate(
-                    context.user._id,
-                    { $addToSet: { SavedBooks: input } },
-                    { new: true, runValidators: true }
-                );
+                try {
+                    const updatedUser = await User.findByIdAndUpdate(
+                        context.user._id,
+                        { $addToSet: { savedBooks: input } },
+                        { new: true, runValidators: true }
+                    );
 
-                return updatedUser;
+                    return updatedUser;
+                } catch (error) {
+                    throw new Error('Error saving book.')
+                }
             }
             throw new AuthenticationError('Please log in.');
         },
@@ -55,7 +59,7 @@ const resolvers = {
             if (context.user) {
                 const updatedUser = await User.findByIdAndUpdate(
                     context.user._id,
-                    { $pull: { SavedBooks: { bookId } } },
+                    { $pull: { savedBooks: { bookId } } },
                     { new: true }
                 );
 
