@@ -19,7 +19,7 @@ This application uses GraphQL, Apollo Server, React, MongoDB, Node.js and Expres
 
 ## Usage
 
-This application is deployed using Render and can be used with the following link: 
+This application is deployed using Render and can be used with the following link: https://mern-book-search-graphql-2ztd.onrender.com/
 
 ![screenshot](./images/BookSearchScreenshot.jpg)
 
